@@ -269,7 +269,8 @@ const ME = {
   name: "Fatwa Ferdiansyah",
   role: "Data Analyst | Business Intelligence",
   email: "fatwaferdiansyah97@gmail.com",
-  linkedin: "https://www.linkedin.com/in/fatwa-ferdiansyah-9951ba278"
+  linkedin: "https://www.linkedin.com/in/fatwa-ferdiansyah-9951ba278",
+  github: ""
 };
 
 /* Existing analytical evidence from the original portfolio. */
@@ -308,7 +309,10 @@ const CHARTS = {
 };
 
 /* Future assignment projects: intentionally empty for now. Add only after the work is uploaded. */
-const futureProjects = [];
+const futureProjects = [
+  /* Future Dibimbing assignments can be appended here after their guide, dataset,
+     and final answer have been uploaded. Keep claims tied to the submitted evidence. */
+];
 
 const slides = [
   {
@@ -401,12 +405,12 @@ const slides = [
         </div>
 
         <div class="card">
-          <span class="eyebrow">Data Integration</span>
-          <h3>Combining heterogeneous sources</h3>
+          <span class="eyebrow">SQL & Data Integration</span>
+          <h3>Build structure, then connect the data</h3>
           <div style="margin-top:12px">
-            <span class="tag o">CSV</span><span class="tag o">REST API</span><span class="tag o">BeautifulSoup</span><span class="tag o">Key normalization</span>
+            <span class="tag o">PostgreSQL</span><span class="tag o">DDL / DML</span><span class="tag o">Keys</span><span class="tag o">Constraints</span><span class="tag o">REST API</span><span class="tag o">BeautifulSoup</span>
           </div>
-          <div class="callout"><b>Evidence:</b> file + API + web data joined into one keyed dataset, with explicit handling for failed requests and unmatched rows.</div>
+          <div class="callout"><b>Evidence:</b> relational e-commerce database + multi-source Python pipeline. SQL covers PK/FK, UNIQUE, CHECK, DEFAULT, DML, and ALTER TABLE.</div>
         </div>
 
         <div class="card tint">
@@ -488,6 +492,81 @@ const slides = [
         </div>
       </div>`
   },
+
+  {
+    id:"sql-database", title:"SQL & Database Design",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · SQL & Relational Database Design</div>
+      <h2>Built an e-commerce database from scratch in PostgreSQL</h2>
+      <p class="sub">A structured database-design case covering master data, transaction tables, referential integrity, many-to-many relationships, CRUD operations, and schema modification.</p>
+
+      <div class="grid g4" style="margin-top:18px;flex:none">
+        <div class="card"><div class="stat-l">Tables</div><div class="stat">5</div><div class="stat-n">categories · customers · products · orders · order_details</div></div>
+        <div class="card"><div class="stat-l">Relationship types</div><div class="stat">2</div><div class="stat-n">one-to-many + many-to-many</div></div>
+        <div class="card"><div class="stat-l">Integrity rules</div><div class="stat">7+</div><div class="stat-n">PK · FK · NOT NULL · UNIQUE · CHECK · DEFAULT</div></div>
+        <div class="card"><div class="stat-l">Database</div><div class="stat">PostgreSQL</div><div class="stat-n">implemented and tested in DBeaver</div></div>
+      </div>
+
+      <div class="grid g25" style="margin-top:18px;flex:1">
+        <div class="card">
+          <span class="eyebrow">Relational model</span>
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.2px;line-height:1.58;color:var(--ink2);margin-top:3px">
+            <div><b>CATEGORIES</b> → PRODUCTS</div>
+            <div style="padding-left:22px">category_id · product_id · price</div>
+            <div style="margin-top:5px"><b>CUSTOMERS</b> → ORDERS</div>
+            <div style="padding-left:22px">customer_id · order_id</div>
+            <div style="margin-top:5px"><b>ORDERS</b> → ORDER_DETAILS ← PRODUCTS</div>
+            <div style="padding-left:22px">composite PK: (order_id, product_id)</div>
+          </div>
+          <div class="callout"><b>Why the bridge table?</b> One order can contain multiple products, while one product can appear in many orders.</div>
+        </div>
+
+        <div class="card good">
+          <span class="eyebrow">Design decision</span>
+          <h3>Current price ≠ historical transaction price</h3>
+          <p style="font-size:13.7px;color:var(--ink2);line-height:1.5;margin-top:9px">
+            <b>products.price</b> stores the current catalogue price. <b>order_details.unit_price</b> stores the price captured when the order was placed, so a later price update does not rewrite transaction history.
+          </p>
+          <div class="callout" style="margin-top:auto;background:#fff;border-color:#c7ecdd"><b>Evidence:</b> the script updates the product catalogue price while retaining the original order-detail unit price.</div>
+        </div>
+      </div>`
+  },
+
+
+  {
+    id:"sql-implementation", title:"SQL Implementation",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · SQL Evidence</div>
+      <h2>From business rules to executable database constraints</h2>
+      <div class="grid g2" style="margin-top:20px;flex:1">
+        <div class="card">
+          <span class="eyebrow">What I implemented</span>
+          <ul style="margin-top:8px">
+            <li><b>DDL:</b> created five related tables with explicit data types and primary keys.</li>
+            <li><b>Referential integrity:</b> linked products to categories, orders to customers, and order details to both orders and products.</li>
+            <li><b>Constraints:</b> enforced required fields, unique customer email, non-negative prices, and positive quantities.</li>
+            <li><b>DML:</b> inserted dependent records in a safe order, then demonstrated UPDATE and DELETE operations.</li>
+            <li><b>Schema evolution:</b> added <b>phone_number</b> and widened <b>customer_name</b> with ALTER TABLE.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Data dictionary · selected fields</span>
+          <div class="table-wrap" style="margin-top:4px">
+            <table>
+              <tr><th>Table</th><th>Column</th><th>Rule</th></tr>
+              <tr><td class="k">customers</td><td>customer_id</td><td>PK</td></tr>
+              <tr><td class="k">customers</td><td>email</td><td>NOT NULL · UNIQUE</td></tr>
+              <tr><td class="k">products</td><td>category_id</td><td>FK → categories</td></tr>
+              <tr><td class="k">products</td><td>price</td><td>CHECK ≥ 0</td></tr>
+              <tr><td class="k">order_details</td><td>quantity</td><td>CHECK &gt; 0</td></tr>
+              <tr><td class="k">order_details</td><td>unit_price</td><td>CHECK ≥ 0 · historical value</td></tr>
+            </table>
+          </div>
+          <div class="callout"><b>Technical evidence:</b> clean SQL script prepared for portfolio review; the original assignment required PostgreSQL + DBeaver and covered DDL, relationships, DML, constraints, and ALTER TABLE.</div>
+        </div>
+      </div>`
+  },
+
 
   {
     id:"hr", title:"Analytical Rigor",
@@ -604,7 +683,7 @@ const slides = [
         <div class="chip"><b>LinkedIn</b> · <a href="${ME.linkedin}" target="_blank" rel="noopener">View profile</a></div>
       </div>
       <div style="margin-top:34px;font-size:13px;color:var(--muted);line-height:1.55;max-width:70ch">
-        Source workbooks and notebooks are available as technical evidence. Future portfolio entries will be added as structured assignment case studies, showing the brief, dataset, approach, result, and supporting files.
+        Source workbooks, SQL scripts, notebooks, and dashboards are treated as technical evidence. Future Dibimbing assignments will be added as structured case studies showing the brief, dataset, approach, validation, result, and supporting files.
       </div>`
   }
 ];
