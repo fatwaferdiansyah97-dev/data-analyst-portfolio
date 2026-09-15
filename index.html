@@ -35,21 +35,24 @@ a{color:inherit}
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:24px;
+  padding:0;
+  overflow:hidden;
 }
 
 .slide{
-  width:min(1280px, calc(100vw - 48px));
-  aspect-ratio:16 / 9;
-  max-height:calc(100vh - 48px);
+  width:1280px;
+  height:720px;
+  flex:0 0 auto;
   background:var(--surface);
   position:relative;
   display:none;
-  padding:48px 64px 76px;
+  padding:48px 64px 94px;
   flex-direction:column;
   box-shadow:0 18px 50px rgba(0,0,0,.4);
   border-radius:6px;
   overflow:hidden;
+  transform:scale(var(--s, 1));
+  transform-origin:center center;
 }
 .slide.on{display:flex}
 
@@ -59,11 +62,11 @@ a{color:inherit}
   color:var(--blue);font-weight:800;margin-bottom:10px;
 }
 h1{
-  font-size:clamp(36px,4.35vw,56px);
+  font-size:52px;
   line-height:1.04;letter-spacing:-.025em;font-weight:850;
 }
 h2{
-  font-size:clamp(24px,2.3vw,32px);
+  font-size:30px;
   line-height:1.12;letter-spacing:-.02em;font-weight:800;
   max-width:35ch;
 }
@@ -91,7 +94,7 @@ h3{font-size:17px;line-height:1.25;font-weight:800}
 .card.warn{background:var(--orange-soft);border-color:#f8d7c7}
 .card.good{background:var(--aqua-soft);border-color:#c7ecdd}
 
-.stat{font-size:clamp(28px,3vw,40px);font-weight:850;letter-spacing:-.025em;line-height:1}
+.stat{font-size:38px;font-weight:850;letter-spacing:-.025em;line-height:1}
 .stat.sm{font-size:27px}
 .stat-l{
   font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;
@@ -174,6 +177,140 @@ td.k{color:var(--ink);font-weight:700}
 .project-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue)}
 .project-badge.portfolio::before{background:var(--orange)}
 
+.mini-stat{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:800}
+
+.skills-grid{grid-template-rows:1fr 1fr}
+.skills-grid .card{padding:14px 16px}
+.skills-grid h3{font-size:16px}
+.skills-grid .callout{font-size:12.5px;padding:11px 13px}
+.impact-cases .card{padding:14px 16px}
+.impact-cases li{font-size:12.9px;line-height:1.37;margin-bottom:6px}
+.impact-cases .eyebrow{margin-bottom:6px}
+.impact-cases h3{font-size:16px}
+
+/* ---------- Slide-specific fit fixes ---------- */
+.slide[data-slide-id="skills"] .skills-grid{
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  align-content:stretch;
+  min-height:0;
+  gap:13px;
+}
+.slide[data-slide-id="skills"] .skills-grid .card{
+  min-height:0;
+  padding:12px 14px;
+  overflow:hidden;
+}
+.slide[data-slide-id="skills"] .skills-grid .eyebrow{margin-bottom:5px}
+.slide[data-slide-id="skills"] .skills-grid h3{font-size:15px;line-height:1.18}
+.slide[data-slide-id="skills"] .skills-grid .tag{font-size:10.5px;padding:4px 8px;margin-right:4px;margin-bottom:4px}
+.slide[data-slide-id="skills"] .skills-grid .callout{padding:9px 11px;font-size:11.7px;line-height:1.35}
+.slide[data-slide-id="olist-overview"] h2{max-width:30ch}
+.slide[data-slide-id="olist-overview"] .olist-stats .card{padding:12px 14px}
+.slide[data-slide-id="olist-overview"] .olist-stats .stat{font-size:34px}
+.slide[data-slide-id="olist-overview"] .olist-stats .stat-n{font-size:11.8px;line-height:1.28;margin-top:7px}
+.slide[data-slide-id="olist-overview"] .olist-body .card{padding:13px 15px;overflow:hidden}
+.slide[data-slide-id="olist-overview"] .olist-body h3{font-size:15.5px}
+.slide[data-slide-id="olist-overview"] .olist-body li{font-size:12.5px;line-height:1.34;margin-bottom:5px}
+.slide[data-slide-id="olist-overview"] .olist-body .eyebrow{margin-bottom:5px}
+.slide[data-slide-id="olist-overview"] .olist-body .callout{padding:9px 11px;font-size:11.8px;line-height:1.34}
+
+
+/* ---------- HR slide fit ---------- */
+.slide[data-slide-id="hr"] .g25 > div:last-child{gap:10px !important}
+.slide[data-slide-id="hr"] .g25 .card{padding:12px 14px !important;overflow:hidden;min-height:0}
+.slide[data-slide-id="hr"] .g25 p{font-size:12.9px !important;line-height:1.4 !important}
+.slide[data-slide-id="hr"] .g25 table td{padding:5px 9px 5px 0}
+.slide[data-slide-id="hr"] .g25 .eyebrow{margin-bottom:4px}
+
+/* ---------- Impact slide fit ---------- */
+.slide[data-slide-id="impact"] .impact-cases .card{padding:13px 15px;overflow:hidden;min-height:0}
+.slide[data-slide-id="impact"] .impact-cases li{font-size:12.4px;line-height:1.33;margin-bottom:5px}
+.slide[data-slide-id="impact"] .impact-cases h3{font-size:15.2px;line-height:1.2}
+.slide[data-slide-id="impact"] .impact-cases .callout{padding:10px 12px;font-size:12.2px;line-height:1.36}
+
+/* ---------- Explore buttons (contact slide) ---------- */
+.explore-label{
+  margin-top:26px;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);font-weight:800;
+}
+a.chip.go{
+  display:inline-block;text-decoration:none;
+  background:var(--blue-soft);border-color:#cfe1f9;color:#1c5cab;
+  padding:9px 14px;
+}
+a.chip.go b{color:#1c5cab}
+a.chip.go:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+a.chip.go:hover b{color:#fff}
+
+/* ---------- Evidence links ---------- */
+.evidence-links{margin-top:9px;font-size:12.4px;color:var(--muted)}
+.evidence-links a{color:var(--blue);font-weight:700;text-decoration:none}
+.evidence-links a:hover{text-decoration:underline}
+
+/* ---------- SQL slides fit ---------- */
+.slide[data-slide-id="sql-database"] .sql-stats .card{padding:12px 14px}
+.slide[data-slide-id="sql-database"] .sql-stats .stat{font-size:30px}
+.slide[data-slide-id="sql-database"] .sql-stats .stat.sm{font-size:21px}
+.slide[data-slide-id="sql-database"] .sql-stats .stat-n{font-size:11.5px;line-height:1.28;margin-top:7px}
+.slide[data-slide-id="sql-database"] .sql-body .card{padding:13px 15px;overflow:hidden;min-height:0}
+.slide[data-slide-id="sql-implementation"] .sql-impl .card{padding:14px 16px;overflow:hidden;min-height:0}
+.slide[data-slide-id="sql-implementation"] .sql-impl li{font-size:12.8px;line-height:1.38;margin-bottom:6px}
+
+/* ---------- Lending Club slides fit ---------- */
+.slide[data-slide-id="lc-overview"] h2{max-width:42ch;font-size:27px}
+.slide[data-slide-id="lc-overview"] .lc-stats .card{padding:12px 14px}
+.slide[data-slide-id="lc-overview"] .lc-stats .stat.sm{font-size:25px}
+.slide[data-slide-id="lc-overview"] .lc-stats .stat-n{font-size:11.6px;line-height:1.28;margin-top:7px}
+.slide[data-slide-id="lc-overview"] .lc-body .card{padding:13px 15px;overflow:hidden;min-height:0}
+.slide[data-slide-id="lc-overview"] .lc-body h3{font-size:15.5px}
+.slide[data-slide-id="lc-overview"] .lc-body li{font-size:12.6px;line-height:1.36;margin-bottom:5px}
+.slide[data-slide-id="lc-verification"] h2{max-width:44ch;font-size:27px}
+.slide[data-slide-id="lc-verification"] .lc-verify > .card{min-height:0;overflow:hidden}
+.slide[data-slide-id="lc-verification"] .lc-verify li{font-size:12.3px;line-height:1.34;margin-bottom:5px}
+.slide[data-slide-id="lc-verification"] .lc-verify .eyebrow{margin-bottom:5px}
+
+/* ---------- A/B Testing slides fit ---------- */
+.slide[data-slide-id="ab-results"] h2{max-width:44ch;font-size:26px}
+.slide[data-slide-id="ab-results"] .ab-body > .card{min-height:0;overflow:hidden}
+.slide[data-slide-id="ab-results"] .ab-body li{font-size:12.2px;line-height:1.34;margin-bottom:6px}
+.slide[data-slide-id="ab-results"] .ab-body .eyebrow{margin-bottom:5px}
+.slide[data-slide-id="ab-monitoring"] h2{max-width:44ch;font-size:26px}
+.slide[data-slide-id="ab-monitoring"] .ab-body > .card{min-height:0;overflow:hidden}
+.slide[data-slide-id="ab-monitoring"] .ab-body li{font-size:12.4px;line-height:1.38;margin-bottom:7px}
+.slide[data-slide-id="ab-monitoring"] .ab-body .eyebrow{margin-bottom:5px}
+
+/* ---------- Customer Segmentation slides fit ---------- */
+.slide[data-slide-id="rfm-segments"] h2{max-width:46ch;font-size:26px}
+.slide[data-slide-id="rfm-segments"] .rfm-body > .card{min-height:0;overflow:hidden}
+.slide[data-slide-id="rfm-segments"] .rfm-body li{font-size:12.2px;line-height:1.34;margin-bottom:6px}
+.slide[data-slide-id="rfm-segments"] .rfm-body .eyebrow{margin-bottom:5px}
+.slide[data-slide-id="rfm-recommendations"] h2{max-width:48ch;font-size:25px}
+.slide[data-slide-id="rfm-recommendations"] table{font-size:11.6px}
+.slide[data-slide-id="rfm-recommendations"] th{padding-bottom:6px}
+.slide[data-slide-id="rfm-recommendations"] td{padding:6px 8px 6px 0}
+
+/* ---------- Capability slide fit ---------- */
+.capability-grid{
+  grid-template-rows: minmax(0, 1fr) minmax(0, .82fr);
+  align-items:stretch;
+}
+.capability-grid > .card{
+  min-height:0;
+  overflow:hidden;
+}
+.capability-discipline{
+  padding-top:14px;
+  padding-bottom:12px;
+}
+.capability-discipline ul{
+  margin-top:8px !important;
+}
+.capability-discipline li{
+  font-size:12.6px;
+  line-height:1.32;
+  margin-bottom:5px;
+}
+
 /* ---------- Navigation ---------- */
 #nav{
   position:fixed;right:20px;bottom:18px;display:flex;gap:8px;align-items:center;z-index:9;
@@ -198,10 +335,11 @@ svg{display:block}
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
   body{background:var(--surface)}
-  #stage{padding:0;align-items:flex-start}
+  #stage{padding:0;align-items:flex-start;overflow:visible}
   .slide{
-    width:100vw;max-height:none;min-height:100vh;height:auto;aspect-ratio:auto;
+    width:100vw;max-height:none;min-height:100vh;height:auto;
     border-radius:0;box-shadow:none;padding:34px 24px 74px;overflow:visible;
+    transform:none;
   }
   .g4,.g3,.g2,.g25{grid-template-columns:1fr}
   .grid{margin-top:14px}
@@ -210,6 +348,8 @@ svg{display:block}
   .foot{left:24px;right:24px}
   .cover .value{font-size:17px}
   #nav{right:12px;bottom:10px}
+  .project-badge{display:inline-block;width:auto;max-width:100%;white-space:normal;line-height:1.4}
+  .project-badge::before{display:inline-block;margin-right:7px;vertical-align:middle}
 }
 
 @media (max-width:600px){
@@ -225,6 +365,27 @@ svg{display:block}
   *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
 
+@media (max-width:900px){
+  #stage{padding:10px}
+  .slide{width:calc(100vw - 20px);max-height:none;padding:34px 28px 84px}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .g3,.skills-grid{grid-template-columns:1fr 1fr}
+  .g2,.g25{grid-template-columns:1fr}
+  .impact-cases{overflow:auto}
+  .slide[data-slide-id="olist-overview"] .olist-stats .stat{font-size:26px}
+  .slide[data-slide-id="rfm-recommendations"] table,
+  .slide[data-slide-id="rfm-recommendations"] tr,
+  .slide[data-slide-id="rfm-recommendations"] th,
+  .slide[data-slide-id="rfm-recommendations"] td{display:block;width:auto}
+  .slide[data-slide-id="rfm-recommendations"] tr:first-child{display:none}
+  .slide[data-slide-id="rfm-recommendations"] tr{margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .slide[data-slide-id="rfm-recommendations"] td{border-bottom:none;padding:2px 0;font-size:13.5px}
+  .slide[data-slide-id="rfm-recommendations"] td.k{font-size:15px;margin-bottom:2px}
+  .slide[data-slide-id="rfm-recommendations"] td:nth-child(2)::before{content:"Share: ";color:var(--muted);font-weight:700}
+  .slide[data-slide-id="rfm-recommendations"] td:nth-child(3)::before{content:"Rule: ";color:var(--muted);font-weight:700}
+  .slide[data-slide-id="rfm-recommendations"] td:nth-child(4)::before{content:"Action: ";color:var(--muted);font-weight:700}
+}
+
 @media print{
   @page{size:1280px 720px;margin:0}
   html,body{background:#fff}
@@ -233,6 +394,7 @@ svg{display:block}
   .slide{
     display:flex!important;width:1280px;height:720px;min-height:720px;max-height:720px;
     box-shadow:none;border-radius:0;page-break-after:always;break-after:page;
+    transform:none!important;
   }
 }
 </style>
@@ -270,7 +432,7 @@ const ME = {
   role: "Data Analyst | Business Intelligence",
   email: "fatwaferdiansyah97@gmail.com",
   linkedin: "https://www.linkedin.com/in/fatwa-ferdiansyah-9951ba278",
-  github: ""
+  github: "https://github.com/fatwaferdiansyah97-dev"
 };
 
 /* Existing analytical evidence from the original portfolio. */
@@ -305,14 +467,176 @@ const CHARTS = {
     <text x="128" y="160" text-anchor="end" font-size="13" fill="#52514e">IT <tspan fill="#8a8985" font-size="11">n=201</tspan></text><line x1="241.1" y1="156" x2="386.8" y2="156" stroke="#2a78d6" stroke-width="2.5" opacity=".45"/><circle cx="309.9" cy="156" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/><text x="398.8" y="160" font-size="12" font-weight="600" fill="#0b0b0b">29.4%</text>
     <text x="128" y="200" text-anchor="end" font-size="13" fill="#52514e">Marketing <tspan fill="#8a8985" font-size="11">n=185</tspan></text><line x1="224.8" y1="196" x2="375.1" y2="196" stroke="#2a78d6" stroke-width="2.5" opacity=".45"/><circle cx="294.7" cy="196" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/><text x="387.1" y="200" font-size="12" font-weight="600" fill="#0b0b0b">28.1%</text>
     <text x="128" y="240" text-anchor="end" font-size="13" fill="#52514e">Finance <tspan fill="#8a8985" font-size="11">n=185</tspan></text><line x1="213.1" y1="236" x2="361.2" y2="236" stroke="#2a78d6" stroke-width="2.5" opacity=".45"/><circle cx="281.9" cy="236" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/><text x="373.2" y="240" font-size="12" font-weight="600" fill="#0b0b0b">27.0%</text>
-  </svg>`
+  </svg>`,
+
+  lcGrade: `<svg viewBox="0 0 620 300" width="100%" role="img" aria-label="Default rate by grade, verified versus not verified">
+    <line x1="132.0" y1="14" x2="132.0" y2="260" stroke="#e6e5e1"/><text x="132.0" y="276" text-anchor="middle" font-size="11" fill="#8a8985">0%</text>
+    <line x1="218.2" y1="14" x2="218.2" y2="260" stroke="#e6e5e1"/><text x="218.2" y="276" text-anchor="middle" font-size="11" fill="#8a8985">10%</text>
+    <line x1="304.4" y1="14" x2="304.4" y2="260" stroke="#e6e5e1"/><text x="304.4" y="276" text-anchor="middle" font-size="11" fill="#8a8985">20%</text>
+    <line x1="390.7" y1="14" x2="390.7" y2="260" stroke="#e6e5e1"/><text x="390.7" y="276" text-anchor="middle" font-size="11" fill="#8a8985">30%</text>
+    <line x1="476.9" y1="14" x2="476.9" y2="260" stroke="#e6e5e1"/><text x="476.9" y="276" text-anchor="middle" font-size="11" fill="#8a8985">40%</text>
+    <text x="120" y="34" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">A</text>
+    <line x1="182.2" y1="30" x2="176.0" y2="30" stroke="#8a8985" stroke-width="2" opacity=".42"/>
+    <circle cx="175.2" cy="30" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+    <circle cx="183.0" cy="30" r="6" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+    <text x="196.0" y="34" font-size="11.5" font-weight="700" fill="#0b0b0b">+0.90 pp</text>
+    <text x="120" y="70" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">B</text>
+    <line x1="230.9" y1="66" x2="230.8" y2="66" stroke="#8a8985" stroke-width="2" opacity=".42"/>
+    <circle cx="223.9" cy="66" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+    <circle cx="237.8" cy="66" r="6" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+    <text x="250.8" y="70" font-size="11.5" font-weight="700" fill="#0b0b0b">+1.61 pp</text>
+    <text x="120" y="106" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">C</text>
+    <line x1="281.9" y1="102" x2="292.3" y2="102" stroke="#8a8985" stroke-width="2" opacity=".42"/>
+    <circle cx="274.9" cy="102" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+    <circle cx="299.3" cy="102" r="6" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+    <text x="312.3" y="106" font-size="11.5" font-weight="700" fill="#0b0b0b">+2.83 pp</text>
+    <text x="120" y="142" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">D</text>
+    <line x1="322.6" y1="138" x2="342.2" y2="138" stroke="#8a8985" stroke-width="2" opacity=".42"/>
+    <circle cx="315.6" cy="138" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+    <circle cx="349.2" cy="138" r="6" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+    <text x="362.2" y="142" font-size="11.5" font-weight="700" fill="#0b0b0b">+3.90 pp</text>
+    <text x="120" y="178" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">E</text>
+    <line x1="358.6" y1="174" x2="391.1" y2="174" stroke="#8a8985" stroke-width="2" opacity=".42"/>
+    <circle cx="351.6" cy="174" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+    <circle cx="398.1" cy="174" r="6" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+    <text x="411.1" y="178" font-size="11.5" font-weight="700" fill="#0b0b0b">+5.39 pp</text>
+    <text x="120" y="214" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">F</text>
+    <line x1="388.3" y1="210" x2="431.3" y2="210" stroke="#8a8985" stroke-width="2" opacity=".42"/>
+    <circle cx="381.3" cy="210" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+    <circle cx="438.3" cy="210" r="6" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+    <text x="451.3" y="214" font-size="11.5" font-weight="700" fill="#0b0b0b">+6.62 pp</text>
+    <text x="120" y="250" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">G</text>
+    <line x1="445.2" y1="246" x2="464.6" y2="246" stroke="#8a8985" stroke-width="2" opacity=".42"/>
+    <circle cx="438.2" cy="246" r="6" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+    <circle cx="471.6" cy="246" r="6" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+    <text x="484.6" y="250" font-size="11.5" font-weight="700" fill="#0b0b0b">+3.88 pp</text>
+    <circle cx="140" cy="292" r="5" fill="#2a78d6"/><text x="151" y="296" font-size="11.5" fill="#52514e">Not Verified</text>
+    <circle cx="238" cy="292" r="5" fill="#eb6834"/><text x="249" y="296" font-size="11.5" fill="#52514e">Verified</text>
+    <text x="340" y="296" font-size="11.5" fill="#8a8985">gap shown per grade, all 7 positive</text>
+    </svg>`,
+
+  lcDecomp: `<svg viewBox="0 0 612 128" width="100%" role="img" aria-label="Decomposition of the crude default-rate gap">
+    <text x="16" y="14" font-size="11" letter-spacing=".07em" fill="#8a8985" font-weight="800">CRUDE GAP 6.29 PERCENTAGE POINTS</text>
+    <rect x="16.0" y="26" width="362.2" height="34" rx="4" fill="#c9d8ea"/>
+    <rect x="380.2" y="26" width="215.8" height="34" rx="4" fill="#eb6834"/>
+    <text x="198.1" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#0b0b0b">3.95 pp</text>
+    <text x="488.1" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">2.34 pp</text>
+    <text x="16" y="80" font-size="12" font-weight="700" fill="#52514e">Explained by grade mix (63%)</text>
+    <text x="380.2" y="80" font-size="12" font-weight="700" fill="#a8431f">Survives (37%)</text>
+    <text x="16" y="98" font-size="11.5" fill="#8a8985">Verification is applied more often to D-G grades</text>
+    <text x="380.2" y="98" font-size="11.5" fill="#8a8985">Still present inside every grade</text>
+    <line x1="16.0" y1="112" x2="596.0" y2="112" stroke="#e6e5e1"/>
+    <text x="16" y="126" font-size="11" fill="#8a8985">Crude 18.07% vs 11.78%  |  grade-standardised 15.80% vs 13.46%</text>
+    </svg>`,
+
+  liftChart: `<svg viewBox="0 0 620 210" width="100%" role="img" aria-label="Relative lift versus control by metric">
+    <line x1="180.0" y1="12" x2="180.0" y2="196" stroke="#e6e5e1"/>
+    <text x="180.0" y="206" text-anchor="middle" font-size="10.5" fill="#8a8985">0%</text>
+    <line x1="288.6" y1="12" x2="288.6" y2="196" stroke="#e6e5e1" stroke-dasharray="3 4"/>
+    <text x="288.6" y="206" text-anchor="middle" font-size="10.5" fill="#8a8985">10%</text>
+    <line x1="397.1" y1="12" x2="397.1" y2="196" stroke="#e6e5e1" stroke-dasharray="3 4"/>
+    <text x="397.1" y="206" text-anchor="middle" font-size="10.5" fill="#8a8985">20%</text>
+    <line x1="505.7" y1="12" x2="505.7" y2="196" stroke="#e6e5e1" stroke-dasharray="3 4"/>
+    <text x="505.7" y="206" text-anchor="middle" font-size="10.5" fill="#8a8985">30%</text>
+    <text x="170" y="36.0" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">Subscription</text>
+    <rect x="180" y="20" width="372.7" height="24" rx="4" fill="#2a78d6"/>
+    <text x="560.7" y="36.0" font-size="13" font-weight="800" fill="#0b0b0b">+34.3%</text>
+    <text x="180" y="16" font-size="10" letter-spacing=".04em" fill="#8a8985">PRIMARY METRIC</text>
+    <text x="170" y="80.0" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">Engagement</text>
+    <rect x="180" y="64" width="361.5" height="24" rx="4" fill="#2a78d6"/>
+    <text x="549.5" y="80.0" font-size="13" font-weight="800" fill="#0b0b0b">+33.3%</text>
+    <text x="180" y="60" font-size="10" letter-spacing=".04em" fill="#8a8985">GUARDRAIL METRIC</text>
+    <text x="170" y="124.0" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">Duration Played</text>
+    <rect x="180" y="108" width="360.2" height="24" rx="4" fill="#2a78d6"/>
+    <text x="548.2" y="124.0" font-size="13" font-weight="800" fill="#0b0b0b">+33.2%</text>
+    <text x="170" y="168.0" text-anchor="end" font-size="13" font-weight="700" fill="#52514e">Payment</text>
+    <rect x="180" y="152" width="157.8" height="24" rx="4" fill="#2a78d6"/>
+    <text x="345.8" y="168.0" font-size="13" font-weight="800" fill="#0b0b0b">+14.5%</text>
+    </svg>`,
+
+  monitorChart: `<svg viewBox="0 0 620 250" width="100%" role="img" aria-label="Daily active users for 15 days after rollout">
+    <line x1="44" y1="210.0" x2="608" y2="210.0" stroke="#e6e5e1"/>
+    <text x="36" y="214.0" text-anchor="end" font-size="10.5" fill="#8a8985">0</text>
+    <line x1="44" y1="150.6" x2="608" y2="150.6" stroke="#e6e5e1" stroke-dasharray="3 4"/>
+    <text x="36" y="154.6" text-anchor="end" font-size="10.5" fill="#8a8985">10k</text>
+    <line x1="44" y1="91.2" x2="608" y2="91.2" stroke="#e6e5e1" stroke-dasharray="3 4"/>
+    <text x="36" y="95.2" text-anchor="end" font-size="10.5" fill="#8a8985">20k</text>
+    <line x1="44" y1="31.9" x2="608" y2="31.9" stroke="#e6e5e1" stroke-dasharray="3 4"/>
+    <text x="36" y="35.9" text-anchor="end" font-size="10.5" fill="#8a8985">30k</text>
+    <line x1="310.7" y1="14" x2="310.7" y2="216" stroke="#52514e" stroke-width="1.4" stroke-dasharray="5 4"/>
+    <line x1="60.0" y1="113.9" x2="291.4" y2="113.9" stroke="#8a8985" stroke-width="1.6" stroke-dasharray="2 3"/>
+    <line x1="330.0" y1="63.5" x2="561.4" y2="63.5" stroke="#2a78d6" stroke-width="1.6" stroke-dasharray="2 3"/>
+    <path d="M 60.0 95.4 L 98.6 110.3 L 137.1 127.0 L 175.7 115.1 L 214.3 100.8 L 252.9 108.1 L 291.4 140.8 L 330.0 80.2 L 368.6 85.5 L 407.1 75.9 L 445.7 33.0 L 484.3 58.8 L 522.9 56.7 L 561.4 54.4 L 600.0 64.9" fill="none" stroke="#2a78d6" stroke-width="2.6"/>
+    <circle cx="60.0" cy="95.4" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="98.6" cy="110.3" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="137.1" cy="127.0" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="175.7" cy="115.1" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="214.3" cy="100.8" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="252.9" cy="108.1" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="291.4" cy="140.8" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="330.0" cy="80.2" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="368.6" cy="85.5" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="407.1" cy="75.9" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="445.7" cy="33.0" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="484.3" cy="58.8" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="522.9" cy="56.7" r="3.2" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="561.4" cy="54.4" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <circle cx="600.0" cy="64.9" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="1.4"/>
+    <text x="175.7" y="232" text-anchor="middle" font-size="11.5" font-weight="700" fill="#52514e">Week 1, avg 16,184/day</text>
+    <text x="445.7" y="232" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1c5cab">Week 2, avg 24,670/day</text>
+    <text x="600.0" y="52.9" text-anchor="end" font-size="10.5" fill="#8a8985">Day 15</text>
+    </svg>`,
+
+  rfmChart: `<svg viewBox="0 0 620 210" width="100%" role="img" aria-label="Customer count and profit by segment">
+    <text x="8" y="16" font-size="11" letter-spacing=".05em" font-weight="800" fill="#8a8985">COUNT OF CUSTOMERS</text>
+    <text x="108" y="47.0" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">At Risk</text>
+    <rect x="116" y="34" width="120.0" height="18" rx="3" fill="#2a78d6"/>
+    <text x="243.0" y="47.0" font-size="12" font-weight="800" fill="#0b0b0b">278</text>
+    <text x="108" y="81.0" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">Potential</text>
+    <rect x="116" y="68" width="114.8" height="18" rx="3" fill="#2a78d6"/>
+    <text x="237.8" y="81.0" font-size="12" font-weight="800" fill="#0b0b0b">266</text>
+    <text x="108" y="115.0" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">Uncategorized</text>
+    <rect x="116" y="102" width="39.3" height="18" rx="3" fill="#2a78d6"/>
+    <text x="162.3" y="115.0" font-size="12" font-weight="800" fill="#0b0b0b">91</text>
+    <text x="108" y="149.0" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">Champions</text>
+    <rect x="116" y="136" width="36.7" height="18" rx="3" fill="#2a78d6"/>
+    <text x="159.7" y="149.0" font-size="12" font-weight="800" fill="#0b0b0b">85</text>
+    <text x="108" y="183.0" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">Loyal</text>
+    <rect x="116" y="170" width="31.5" height="18" rx="3" fill="#2a78d6"/>
+    <text x="154.5" y="183.0" font-size="12" font-weight="800" fill="#0b0b0b">73</text>
+    <line x1="300" y1="4" x2="300" y2="196" stroke="#e6e5e1"/>
+    <text x="328" y="16" font-size="11" letter-spacing=".05em" font-weight="800" fill="#8a8985">TOTAL PROFIT</text>
+    <text x="418" y="47.0" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">Potential</text>
+    <rect x="426" y="34" width="120.0" height="18" rx="3" fill="#2a78d6"/>
+    <text x="553.0" y="47.0" font-size="12" font-weight="800" fill="#0b0b0b">Rp94K</text>
+    <text x="418" y="81.0" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">At Risk</text>
+    <rect x="426" y="68" width="93.2" height="18" rx="3" fill="#2a78d6"/>
+    <text x="526.2" y="81.0" font-size="12" font-weight="800" fill="#0b0b0b">Rp73K</text>
+    <text x="418" y="115.0" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">Champions</text>
+    <rect x="426" y="102" width="76.6" height="18" rx="3" fill="#2a78d6"/>
+    <text x="509.6" y="115.0" font-size="12" font-weight="800" fill="#0b0b0b">Rp60K</text>
+    <text x="418" y="149.0" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">Loyal</text>
+    <rect x="426" y="136" width="65.1" height="18" rx="3" fill="#2a78d6"/>
+    <text x="498.1" y="149.0" font-size="12" font-weight="800" fill="#0b0b0b">Rp51K</text>
+    <text x="418" y="183.0" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">Uncategorized</text>
+    <rect x="426" y="170" width="8.9" height="18" rx="3" fill="#2a78d6"/>
+    <text x="441.9" y="183.0" font-size="12" font-weight="800" fill="#0b0b0b">Rp7K</text>
+    </svg>`
 };
 
 /* Future assignment projects: intentionally empty for now. Add only after the work is uploaded. */
-const futureProjects = [
-  /* Future Dibimbing assignments can be appended here after their guide, dataset,
-     and final answer have been uploaded. Keep claims tied to the submitted evidence. */
-];
+const futureProjects = [];
+/*
+  Future assignment template:
+  {
+    title: "Project title",
+    summary: "Recruiter-facing one-line problem statement.",
+    assignmentGuide: "What the assignment asked you to solve.",
+    result: "Validated result + business implication.",
+    evidence: "SQL / notebook / dashboard / workbook / Tableau Public",
+    tools: ["SQL", "Python", "Tableau"]
+  }
+*/
 
 const slides = [
   {
@@ -336,6 +660,8 @@ const slides = [
         <a href="mailto:${ME.email}">${ME.email}</a>
         &nbsp;·&nbsp;
         <a href="${ME.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
+        &nbsp;·&nbsp;
+        <a href="${ME.github}" target="_blank" rel="noopener">GitHub</a>
       </div>`
   },
 
@@ -344,16 +670,16 @@ const slides = [
     html:`
       <div class="kicker">Professional experience · Ombudsman RI, Riau</div>
       <h2>From analysis to institutional decision-making</h2>
-      <p class="sub">The strongest evidence in this portfolio is not a course certificate. It is analysis performed in a real institutional environment and used to change how work was managed.</p>
+      <p class="sub">The strongest evidence here is analysis performed in a real institutional environment and used to change how work was managed.</p>
 
-      <div class="grid g4" style="margin-top:20px;flex:none">
+      <div class="grid g4" style="margin-top:18px;flex:none">
         <div class="card"><div class="stat-l">In role since</div><div class="stat">2020</div><div class="stat-n">Policy Technical Analyst</div></div>
         <div class="card"><div class="stat-l">Reports analysed</div><div class="stat">100+</div><div class="stat-n">per month · 4 intake streams</div></div>
         <div class="card"><div class="stat-l">National ranking</div><div class="stat">15th → 2nd</div><div class="stat-n">over two years</div></div>
         <div class="card"><div class="stat-l">Policies adopted</div><div class="stat">2</div><div class="stat-n">approved and implemented</div></div>
       </div>
 
-      <div class="grid g2" style="margin-top:16px;flex:1">
+      <div class="grid g2 impact-cases" style="margin-top:14px;flex:1;min-height:0">
         <div class="card good">
           <span class="eyebrow">Case 01 · Performance ranking</span>
           <h3>Scoring the work that was already being done</h3>
@@ -369,11 +695,10 @@ const slides = [
           <h3>When the same KPI means two different things</h3>
           <ul style="margin-top:12px">
             <li>Traced the workflow from registration → verification → plenary approval → disposition.</li>
-            <li>Showed that central and representative offices measured “backlog” from different dates.</li>
-            <li>Late-December registrations were being counted as backlog while still in early-stage processing.</li>
+            <li>Central and representative offices measured “backlog” from different dates, so late-December registrations counted as backlog while still in early-stage processing.</li>
             <li>Recommended delaying year-end registration; the recommendation was <b>adopted as official policy</b>.</li>
           </ul>
-          <div class="callout"><b>Analytical lesson:</b> a definition mismatch between systems is a data-governance problem before it is a performance problem.</div>
+          <div class="callout"><b>Lesson:</b> a definition mismatch between systems is a data-governance problem before it is a performance problem.</div>
         </div>
       </div>`
   },
@@ -383,40 +708,58 @@ const slides = [
     html:`
       <div class="kicker">What I can evidence</div>
       <h2>Capability first. Tools second. Evidence always.</h2>
-      <p class="sub">The technical skills below are tied to work already represented in this portfolio rather than presented as a standalone checklist.</p>
+      <p class="sub">Every skill below is tied to a project in this portfolio rather than presented as a standalone checklist.</p>
 
-      <div class="grid g2" style="margin-top:22px;flex:1">
+      <div class="grid g3 skills-grid" style="margin-top:16px;flex:1;min-height:0">
         <div class="card">
           <span class="eyebrow">Business Intelligence</span>
-          <h3>Dashboarding & reporting</h3>
-          <div style="margin-top:12px">
-            <span class="tag b">Excel</span><span class="tag b">PivotTables</span><span class="tag b">PivotCharts</span><span class="tag b">Power Pivot</span><span class="tag b">Data Model</span><span class="tag b">Slicers</span>
+          <h3>Dashboarding &amp; reporting</h3>
+          <div style="margin-top:10px">
+            <span class="tag b">Excel</span><span class="tag b">PivotTables</span><span class="tag b">Power Pivot</span><span class="tag b">Data Model</span><span class="tag b">Slicers</span>
           </div>
-          <div class="callout"><b>Evidence:</b> 10,005-row retail dataset · 10 PivotTables · 12 PivotCharts · 3 slicers connected across the reporting layer.</div>
+          <div class="callout"><b>Evidence:</b> 10,005-row retail dataset · 10 PivotTables · 12 PivotCharts · 3 connected slicers.</div>
         </div>
 
         <div class="card">
-          <span class="eyebrow">Data Analysis</span>
-          <h3>Cleaning, validation & statistical reasoning</h3>
-          <div style="margin-top:12px">
-            <span class="tag b">Python</span><span class="tag b">pandas</span><span class="tag b">SciPy</span><span class="tag b">matplotlib</span><span class="tag b">seaborn</span>
+          <span class="eyebrow">Statistical Analysis</span>
+          <h3>Cleaning, validation &amp; testing</h3>
+          <div style="margin-top:10px">
+            <span class="tag b">Python</span><span class="tag b">pandas</span><span class="tag b">SciPy</span><span class="tag b">matplotlib</span>
           </div>
-          <div class="callout"><b>Evidence:</b> 1,248 → 1,200 rows · missingness analysis · IQR / winsorization decisions · confidence intervals · ANOVA · χ² · Bonferroni correction.</div>
+          <div class="callout"><b>Evidence:</b> confidence intervals · ANOVA · &chi;&sup2; · Bonferroni correction · stratified odds ratios.</div>
         </div>
 
         <div class="card">
-          <span class="eyebrow">SQL & Data Integration</span>
-          <h3>Build structure, then connect the data</h3>
-          <div style="margin-top:12px">
-            <span class="tag o">PostgreSQL</span><span class="tag o">DDL / DML</span><span class="tag o">Keys</span><span class="tag o">Constraints</span><span class="tag o">REST API</span><span class="tag o">BeautifulSoup</span>
+          <span class="eyebrow">SQL &amp; Data Modeling</span>
+          <h3>Design the structure, then query it</h3>
+          <div style="margin-top:10px">
+            <span class="tag o">PostgreSQL</span><span class="tag o">DDL / DML</span><span class="tag o">Constraints</span><span class="tag o">Views</span>
           </div>
-          <div class="callout"><b>Evidence:</b> relational e-commerce database + multi-source Python pipeline. SQL covers PK/FK, UNIQUE, CHECK, DEFAULT, DML, and ALTER TABLE.</div>
+          <div class="callout"><b>Evidence:</b> 5-table e-commerce schema with PK/FK/CHECK, plus cohort and control-effectiveness views over 2.1 M loan records.</div>
         </div>
 
-        <div class="card tint">
+        <div class="card">
+          <span class="eyebrow">Data Visualization</span>
+          <h3>Make the answer explorable</h3>
+          <div style="margin-top:10px">
+            <span class="tag b">Tableau</span><span class="tag b">LOD</span><span class="tag b">Parameters</span><span class="tag b">Looker Studio</span>
+          </div>
+          <div class="callout"><b>Evidence:</b> Olist data story with relationships and LOD calculations · Lending Club credit-risk dashboard.</div>
+        </div>
+
+        <div class="card">
+          <span class="eyebrow">Data Integration</span>
+          <h3>Combining heterogeneous sources</h3>
+          <div style="margin-top:10px">
+            <span class="tag o">CSV</span><span class="tag o">REST API</span><span class="tag o">BeautifulSoup</span><span class="tag o">Key normalization</span>
+          </div>
+          <div class="callout"><b>Evidence:</b> file + API + web data joined into one keyed dataset, with explicit handling for failed requests and unmatched rows.</div>
+        </div>
+
+        <div class="card tint capability-discipline">
           <span class="eyebrow">Analytical Discipline</span>
           <h3>Reliable answers over impressive-looking answers</h3>
-          <ul style="margin-top:12px">
+          <ul style="margin-top:10px">
             <li>Validate data before interpreting a pattern.</li>
             <li>Separate observed data from constructed features.</li>
             <li>Test a finding before turning it into a recommendation.</li>
@@ -494,81 +837,6 @@ const slides = [
   },
 
   {
-    id:"sql-database", title:"SQL & Database Design",
-    html:`
-      <div class="project-badge portfolio">Portfolio Project · SQL & Relational Database Design</div>
-      <h2>Built an e-commerce database from scratch in PostgreSQL</h2>
-      <p class="sub">A structured database-design case covering master data, transaction tables, referential integrity, many-to-many relationships, CRUD operations, and schema modification.</p>
-
-      <div class="grid g4" style="margin-top:18px;flex:none">
-        <div class="card"><div class="stat-l">Tables</div><div class="stat">5</div><div class="stat-n">categories · customers · products · orders · order_details</div></div>
-        <div class="card"><div class="stat-l">Relationship types</div><div class="stat">2</div><div class="stat-n">one-to-many + many-to-many</div></div>
-        <div class="card"><div class="stat-l">Integrity rules</div><div class="stat">7+</div><div class="stat-n">PK · FK · NOT NULL · UNIQUE · CHECK · DEFAULT</div></div>
-        <div class="card"><div class="stat-l">Database</div><div class="stat">PostgreSQL</div><div class="stat-n">implemented and tested in DBeaver</div></div>
-      </div>
-
-      <div class="grid g25" style="margin-top:18px;flex:1">
-        <div class="card">
-          <span class="eyebrow">Relational model</span>
-          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.2px;line-height:1.58;color:var(--ink2);margin-top:3px">
-            <div><b>CATEGORIES</b> → PRODUCTS</div>
-            <div style="padding-left:22px">category_id · product_id · price</div>
-            <div style="margin-top:5px"><b>CUSTOMERS</b> → ORDERS</div>
-            <div style="padding-left:22px">customer_id · order_id</div>
-            <div style="margin-top:5px"><b>ORDERS</b> → ORDER_DETAILS ← PRODUCTS</div>
-            <div style="padding-left:22px">composite PK: (order_id, product_id)</div>
-          </div>
-          <div class="callout"><b>Why the bridge table?</b> One order can contain multiple products, while one product can appear in many orders.</div>
-        </div>
-
-        <div class="card good">
-          <span class="eyebrow">Design decision</span>
-          <h3>Current price ≠ historical transaction price</h3>
-          <p style="font-size:13.7px;color:var(--ink2);line-height:1.5;margin-top:9px">
-            <b>products.price</b> stores the current catalogue price. <b>order_details.unit_price</b> stores the price captured when the order was placed, so a later price update does not rewrite transaction history.
-          </p>
-          <div class="callout" style="margin-top:auto;background:#fff;border-color:#c7ecdd"><b>Evidence:</b> the script updates the product catalogue price while retaining the original order-detail unit price.</div>
-        </div>
-      </div>`
-  },
-
-
-  {
-    id:"sql-implementation", title:"SQL Implementation",
-    html:`
-      <div class="project-badge portfolio">Portfolio Project · SQL Evidence</div>
-      <h2>From business rules to executable database constraints</h2>
-      <div class="grid g2" style="margin-top:20px;flex:1">
-        <div class="card">
-          <span class="eyebrow">What I implemented</span>
-          <ul style="margin-top:8px">
-            <li><b>DDL:</b> created five related tables with explicit data types and primary keys.</li>
-            <li><b>Referential integrity:</b> linked products to categories, orders to customers, and order details to both orders and products.</li>
-            <li><b>Constraints:</b> enforced required fields, unique customer email, non-negative prices, and positive quantities.</li>
-            <li><b>DML:</b> inserted dependent records in a safe order, then demonstrated UPDATE and DELETE operations.</li>
-            <li><b>Schema evolution:</b> added <b>phone_number</b> and widened <b>customer_name</b> with ALTER TABLE.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <span class="eyebrow">Data dictionary · selected fields</span>
-          <div class="table-wrap" style="margin-top:4px">
-            <table>
-              <tr><th>Table</th><th>Column</th><th>Rule</th></tr>
-              <tr><td class="k">customers</td><td>customer_id</td><td>PK</td></tr>
-              <tr><td class="k">customers</td><td>email</td><td>NOT NULL · UNIQUE</td></tr>
-              <tr><td class="k">products</td><td>category_id</td><td>FK → categories</td></tr>
-              <tr><td class="k">products</td><td>price</td><td>CHECK ≥ 0</td></tr>
-              <tr><td class="k">order_details</td><td>quantity</td><td>CHECK &gt; 0</td></tr>
-              <tr><td class="k">order_details</td><td>unit_price</td><td>CHECK ≥ 0 · historical value</td></tr>
-            </table>
-          </div>
-          <div class="callout"><b>Technical evidence:</b> clean SQL script prepared for portfolio review; the original assignment required PostgreSQL + DBeaver and covered DDL, relationships, DML, constraints, and ALTER TABLE.</div>
-        </div>
-      </div>`
-  },
-
-
-  {
     id:"hr", title:"Analytical Rigor",
     html:`
       <div class="project-badge portfolio">Portfolio Project · HR Analytics</div>
@@ -603,6 +871,363 @@ const slides = [
             <p style="font-size:13.6px;color:var(--ink2);line-height:1.46;margin-top:3px">
               I had selected the highest group first and tested it second. With six groups, that creates a false-positive risk. <b>No department difference was reported and no HR recommendation was made.</b>
             </p>
+          </div>
+        </div>
+      </div>`
+  },
+
+
+  {
+    id:"sql-database", title:"SQL & Database Design",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · SQL &amp; Relational Database Design</div>
+      <h2>Built an e-commerce database from scratch in PostgreSQL</h2>
+      <p class="sub">A database-design case covering master data, transaction tables, referential integrity, many-to-many relationships, CRUD operations, and schema modification.</p>
+
+      <div class="grid g4 sql-stats" style="margin-top:18px;flex:none">
+        <div class="card"><div class="stat-l">Tables</div><div class="stat">5</div><div class="stat-n">categories · customers · products · orders · order_details</div></div>
+        <div class="card"><div class="stat-l">Relationship types</div><div class="stat">2</div><div class="stat-n">one-to-many + many-to-many</div></div>
+        <div class="card"><div class="stat-l">Integrity rules</div><div class="stat">7+</div><div class="stat-n">PK · FK · NOT NULL · UNIQUE · CHECK · DEFAULT</div></div>
+        <div class="card"><div class="stat-l">Database</div><div class="stat sm">PostgreSQL</div><div class="stat-n">implemented and tested in DBeaver</div></div>
+      </div>
+
+      <div class="grid g25 sql-body" style="margin-top:16px;flex:1;min-height:0">
+        <div class="card">
+          <span class="eyebrow">Relational model</span>
+          <div style="font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.2px;line-height:1.55;color:var(--ink2);margin-top:3px">
+            <div><b>CATEGORIES</b> &rarr; PRODUCTS</div>
+            <div style="padding-left:22px">category_id · product_id · price</div>
+            <div style="margin-top:5px"><b>CUSTOMERS</b> &rarr; ORDERS</div>
+            <div style="padding-left:22px">customer_id · order_id</div>
+            <div style="margin-top:5px"><b>ORDERS</b> &rarr; ORDER_DETAILS &larr; PRODUCTS</div>
+            <div style="padding-left:22px">composite PK: (order_id, product_id)</div>
+          </div>
+          <div class="callout"><b>Why the bridge table?</b> One order can contain multiple products, while one product can appear in many orders.</div>
+        </div>
+
+        <div class="card good">
+          <span class="eyebrow">Design decision</span>
+          <h3>Current price is not the historical transaction price</h3>
+          <p style="font-size:13.4px;color:var(--ink2);line-height:1.48;margin-top:9px">
+            <b>products.price</b> holds the current catalogue price. <b>order_details.unit_price</b> holds the price captured when the order was placed, so a later price update does not rewrite transaction history.
+          </p>
+          <div class="callout" style="background:#fff;border-color:#c7ecdd"><b>Evidence:</b> the script updates the catalogue price while the original order-detail unit price stays unchanged.</div>
+        </div>
+      </div>`
+  },
+
+  {
+    id:"sql-implementation", title:"SQL Implementation",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · SQL Evidence</div>
+      <h2>From business rules to executable database constraints</h2>
+      <div class="grid g2 sql-impl" style="margin-top:18px;flex:1;min-height:0">
+        <div class="card">
+          <span class="eyebrow">What I implemented</span>
+          <ul style="margin-top:8px">
+            <li><b>DDL:</b> created five related tables with explicit data types and primary keys.</li>
+            <li><b>Referential integrity:</b> products to categories, orders to customers, order details to both orders and products.</li>
+            <li><b>Constraints:</b> required fields, unique customer email, non-negative prices, positive quantities.</li>
+            <li><b>DML:</b> inserted dependent records in a safe order, then demonstrated UPDATE and DELETE.</li>
+            <li><b>Schema evolution:</b> added <b>phone_number</b> and widened <b>customer_name</b> with ALTER TABLE.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Data dictionary · selected fields</span>
+          <div class="table-wrap" style="margin-top:4px">
+            <table>
+              <tr><th>Table</th><th>Column</th><th>Rule</th></tr>
+              <tr><td class="k">customers</td><td>customer_id</td><td>PK</td></tr>
+              <tr><td class="k">customers</td><td>email</td><td>NOT NULL · UNIQUE</td></tr>
+              <tr><td class="k">products</td><td>category_id</td><td>FK &rarr; categories</td></tr>
+              <tr><td class="k">products</td><td>price</td><td>CHECK &ge; 0</td></tr>
+              <tr><td class="k">order_details</td><td>quantity</td><td>CHECK &gt; 0</td></tr>
+              <tr><td class="k">order_details</td><td>unit_price</td><td>CHECK &ge; 0 · historical value</td></tr>
+            </table>
+          </div>
+          <div class="callout"><b>Technical evidence:</b> the original assignment required PostgreSQL and DBeaver, covering DDL, relationships, DML, constraints, and ALTER TABLE.</div>
+        </div>
+      </div>`
+  },
+
+  {
+    id:"lc-overview", title:"Credit Risk Case Study",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · Credit Risk & Control Effectiveness</div>
+      <h2>Before comparing default rates, I had to decide which loans were allowed to count.</h2>
+      <p class="sub">Lending Club, 2007 to 2018. A loan still inside its term has not had the chance to default yet. Counting it as "did not default" would make every recent vintage look artificially safe.</p>
+      <div class="evidence-links"><a href="https://github.com/fatwaferdiansyah97-dev/lending-club-credit-risk-analysis" target="_blank" rel="noopener">SQL views, scripts and README on GitHub</a> &nbsp;·&nbsp; <a href="https://public.tableau.com/shared/KF5Y2HRP4?:display_count=n&amp;:origin=viz_share_link" target="_blank" rel="noopener">Interactive dashboard on Tableau Public</a></div>
+
+      <div class="grid g4 lc-stats" style="margin-top:18px;flex:none">
+        <div class="card"><div class="stat-l">Raw dataset</div><div class="stat sm">2,260,668</div><div class="stat-n">Lending Club loans, Jun 2007 to Dec 2018</div></div>
+        <div class="card"><div class="stat-l">Matured &amp; analysed</div><div class="stat sm">731,403</div><div class="stat-n">36 and 60 month terms completed</div></div>
+        <div class="card"><div class="stat-l">Still within term</div><div class="stat sm">1,404,642</div><div class="stat-n">excluded from rate comparisons</div></div>
+        <div class="card"><div class="stat-l">Default rate</div><div class="stat sm">15.03%</div><div class="stat-n">109,910 defaults on the matured book</div></div>
+      </div>
+
+      <div class="grid g2 lc-body" style="margin-top:16px;flex:1;min-height:0">
+        <div class="card good">
+          <span class="eyebrow">Method</span>
+          <h3>Right-censoring handled as a separate view, not a footnote</h3>
+          <ul style="margin-top:11px">
+            <li>Built two SQL views: one for cohorts whose term has finished, one for loans still running.</li>
+            <li>Proof the split matters: the <b>Dec 2018</b> 60-month cohort shows <b>0.00%</b> default across 10,491 loans, purely because no time has passed.</li>
+            <li>Every headline rate in this project is computed on matured cohorts only.</li>
+          </ul>
+          <div class="callout" style="background:#fff;border-color:#c7ecdd"><b>Why it matters:</b> blending both sets into one number reports <b>12.02%</b> instead of <b>15.03%</b>, understating default by <b>3.01 pp</b>, a fifth of the true rate.</div>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Baseline risk</span>
+          <h3>Two structural factors established before testing any control</h3>
+          <ul style="margin-top:11px">
+            <li><b>Term:</b> 60-month loans default at <b>25.40%</b> against <b>14.04%</b> for 36-month loans.</li>
+            <li><b>Vintage:</b> 36-month default peaked at <b>26.20%</b> for 2007 originations, fell to <b>10.63%</b> for 2011, then rose to <b>15.47%</b> by 2016.</li>
+            <li>Both move default rates on their own, so neither could be left uncontrolled in the next step.</li>
+          </ul>
+          <div class="callout"><b>Reading:</b> the 2011 trough is a post-crisis tightening effect, not a permanent improvement. Any claim about a credit control has to be tested inside these strata, not across them.</div>
+        </div>
+      </div>`
+  },
+
+  {
+    id:"lc-verification", title:"Control Effectiveness",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · Control Effectiveness</div>
+      <h2>Verified borrowers defaulted more. I tested whether risk grade explains it.</h2>
+      <p class="sub">Income verification is meant to reduce default. On the matured book it is associated with the opposite. The useful question is not whether that is surprising, but how much of it survives controlling for the grade already assigned at origination.</p>
+
+      <div class="grid g25 lc-verify" style="margin-top:16px;flex:1;min-height:0">
+        <div class="card">
+          <span class="eyebrow">Default rate by grade</span>
+          <h3>The gap holds in all seven grades</h3>
+          <div style="margin-top:8px">${CHARTS.lcGrade}</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;min-height:0">
+          <div class="card" style="padding:14px 16px">
+            <span class="eyebrow">Decomposition</span>
+            <div style="margin-top:2px">${CHARTS.lcDecomp}</div>
+          </div>
+          <div class="card tint" style="padding:14px 16px;margin-top:auto">
+            <span class="eyebrow" style="color:#1c5cab">What I concluded</span>
+            <ul style="margin-top:8px">
+              <li>Most of the headline gap is composition: grades D to G are <b>28.4%</b> of the verified book but only <b>12.4%</b> of the unverified book.</li>
+              <li>Standardising every status to one common grade mix narrows the gap from <b>6.29 pp</b> to <b>2.34 pp</b>, but does not close it.</li>
+              <li>Stratified across grades: common odds ratio <b>1.21</b>, &chi;&sup2; = 485.0, p &lt; 0.001.</li>
+              <li>Reading: verification behaves like a reactive step applied to applications that already look risky, not a preventive control. This is an association in observational data, <b>not evidence of causation</b>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>`
+  },
+
+  {
+    id:"ab-results", title:"A/B Testing, Spotify Campaign",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · A/B Testing, Spotify Campaign</div>
+      <h2>All four metrics moved together, and the lift wasn't a sample-size illusion.</h2>
+      <p class="sub">100,000 users, 50,000 per arm. Welch's t-test and Mann-Whitney U for the continuous metrics, a two-proportion Z-test for the binary ones, all four significant at p &lt; 0.001.</p>
+
+      <div class="grid g25 ab-body" style="margin-top:16px;flex:1;min-height:0">
+        <div class="card">
+          <span class="eyebrow">Relative lift, Target vs Control</span>
+          <div style="margin-top:8px">${CHARTS.liftChart}</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;min-height:0">
+          <div class="card" style="padding:14px 16px">
+            <span class="eyebrow">Why the p-values alone don't prove much</span>
+            <ul style="margin-top:8px">
+              <li>The actual sample, 50,000 per arm, is 175x the 286 per arm a power analysis says was needed to detect the Payment effect at 80% power. At that scale almost anything clears p &lt; 0.05.</li>
+              <li>Effect size carries the argument instead. Engagement and Duration Played both land in Cohen's "large" band (d = 2.00 and 1.33); Payment and Subscription are smaller but still real (Cohen's h = 0.23 and 0.45).</li>
+              <li>Running four tests at once inflates the false-positive risk to 18.6%. Under a stricter Bonferroni threshold (alpha 0.0125), all four still hold.</li>
+            </ul>
+          </div>
+          <div class="card tint" style="padding:14px 16px;margin-top:auto">
+            <span class="eyebrow" style="color:#1c5cab">Guardrail, proven not assumed</span>
+            <ul style="margin-top:8px">
+              <li>Subscription is the primary metric. Engagement is the guardrail, chosen because a forced-upsell pattern would show Subscription rising while Engagement falls.</li>
+              <li>The guardrail check is computed from Engagement's own test result, not a manual guess, still up 33.3% at p &lt; 0.001, which is what makes the Ship It call defensible.</li>
+            </ul>
+          </div>
+        </div>
+      </div>`
+  },
+
+  {
+    id:"ab-monitoring", title:"Post-Rollout Monitoring",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · Post-Rollout Monitoring</div>
+      <h2>Daily active users kept climbing for two weeks after rollout, with no dip to explain away.</h2>
+      <p class="sub">15 days of Total Users after the campaign went live. No pre-rollout baseline was provided in the data.</p>
+
+      <div class="grid g25 ab-body" style="margin-top:14px;flex:1;min-height:0">
+        <div class="card">
+          <span class="eyebrow">Daily active users, days 1 to 15 post-rollout</span>
+          <div style="margin-top:6px">${CHARTS.monitorChart}</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:11px;min-height:0">
+          <div class="card" style="padding:13px 15px">
+            <span class="eyebrow">Reading the trend</span>
+            <ul style="margin-top:7px">
+              <li>Week 1 averaged 16,184 users/day, Week 2 averaged 24,670, a jump confirmed by a Welch t-test (p = 0.0001).</li>
+              <li>The 15-day linear trend adds about 871 users/day on average (p = 0.0009, r = 0.76), a consistent direction, not one lucky week.</li>
+            </ul>
+          </div>
+          <div class="card tint" style="padding:13px 15px;margin-top:auto">
+            <span class="eyebrow" style="color:#1c5cab">What this monitoring can't tell you</span>
+            <ul style="margin-top:7px">
+              <li>There is no pre-rollout baseline in this data, so this reads as a trend after rollout, not a controlled before-versus-after comparison.</li>
+              <li>Next step: re-check at month 2 and 3 to rule out a novelty effect before treating this growth rate as the new normal.</li>
+            </ul>
+          </div>
+        </div>
+      </div>`
+  },
+
+  {
+    id:"rfm-segments", title:"Customer Segmentation, RFM Analysis",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · Customer Segmentation, RFM Analysis</div>
+      <h2>At Risk is the largest segment, but Potential customers generate the most profit.</h2>
+      <p class="sub">Dibimbing bootcamp case study. Superstore retail dataset, 9,994 orders, 793 unique customers. Recency, Frequency and Monetary scored per customer and segmented in Power BI.</p>
+
+      <div class="grid g25 rfm-body" style="margin-top:16px;flex:1;min-height:0">
+        <div class="card">
+          <span class="eyebrow">Customer count and profit, by segment</span>
+          <div style="margin-top:8px">${CHARTS.rfmChart}</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;min-height:0">
+          <div class="card" style="padding:14px 16px">
+            <span class="eyebrow">Reading the segments</span>
+            <ul style="margin-top:8px">
+              <li>At Risk is the largest group, 278 of 793 customers (35%), but ranks second-lowest in profit (Rp73K) among the five segments.</li>
+              <li>Potential, 266 customers (34%), produces the highest total profit (Rp94K) despite trailing At Risk in headcount, so segment size alone does not track segment value.</li>
+              <li>Champions and Loyal together are only 20% of customers (158) but still contribute Rp111K combined, more than At Risk alone.</li>
+            </ul>
+          </div>
+          <div class="card tint" style="padding:14px 16px;margin-top:auto">
+            <span class="eyebrow" style="color:#1c5cab">How the segments were built</span>
+            <ul style="margin-top:8px">
+              <li>Recency, Frequency and Monetary were each ranked into quintiles (score 1 to 5) from a snapshot-date customer summary, then combined with fixed threshold rules, e.g. Champions requires R, F and M all scoring 4 or higher.</li>
+              <li>Independently verified against the raw transaction data: replicating this rule logic reproduces the dashboard's segment counts and profit totals exactly.</li>
+            </ul>
+          </div>
+        </div>
+      </div>`
+  },
+
+  {
+    id:"rfm-recommendations", title:"Segment Recommendations",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · Segment Recommendations</div>
+      <h2>Five segments, five different plays. At Risk and Potential together cover 69% of all customers.</h2>
+      <p class="sub">Recommendation attached to every segment, not just a label. Priority is win-back on At Risk and growth on Potential.</p>
+
+      <div class="grid" style="margin-top:16px;flex:1;min-height:0">
+        <div class="card" style="min-height:0;overflow:hidden">
+          <span class="eyebrow">Segment rules and recommended actions</span>
+          <div class="table-wrap" style="margin-top:6px">
+            <table>
+              <tr><th>Segment</th><th>Share</th><th>Rule</th><th>Recommended action</th></tr>
+              <tr><td class="k">At Risk</td><td>35%</td><td>Recency score &le; 2</td><td>Win-back campaign: reactivation discount coupons and reminder emails before they lapse completely.</td></tr>
+              <tr><td class="k">Potential</td><td>34%</td><td>Recency score &ge; 3, and Frequency or Monetary score &ge; 3</td><td>Cross-sell and upsell other products, plus a tiered discount program to move them up into Loyal.</td></tr>
+              <tr><td class="k">Champions</td><td>11%</td><td>Recency, Frequency and Monetary scores all &ge; 4</td><td>VIP loyalty program, early access to new products, priority service.</td></tr>
+              <tr><td class="k">Loyal</td><td>9%</td><td>Frequency and Monetary scores &ge; 4</td><td>Targeted offers and reminders to keep them active before they slip into At Risk.</td></tr>
+              <tr><td class="k">Uncategorized</td><td>11%</td><td>Everything left over</td><td>Monitor purchase patterns, offer entry-level product promotions.</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:14px;flex:none">
+        <b>Priority call:</b> At Risk and Potential together are 69% of the customer base. Winning back At Risk before they go fully inactive, while pushing Potential up into Loyal or Champions, is the highest-leverage move in this segmentation.
+      </div>`
+  },
+
+  {
+    id:"olist-overview", title:"Olist Case Study",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · Tableau BI & Data Story</div>
+      <h2>Revenue grew. Customer retention was the real problem.</h2>
+      <p class="sub">Brazilian E-Commerce Public Dataset by Olist. I built an interactive Tableau story to separate marketplace growth from repeat-customer behavior, while preserving the data's relational structure.</p>
+
+      <div class="grid g4 olist-stats" style="margin-top:18px;flex:none">
+        <div class="card"><div class="stat-l">Orders</div><div class="stat">97,688</div><div class="stat-n">Jan 2017 – Aug 2018 · grain: 1 order</div></div>
+        <div class="card"><div class="stat-l">Customers</div><div class="stat">94,437</div><div class="stat-n">unique customers with orders</div></div>
+        <div class="card"><div class="stat-l">Repeat customers</div><div class="stat">3.1%</div><div class="stat-n">2,921 customers placed >1 order</div></div>
+        <div class="card"><div class="stat-l">Order revenue</div><div class="stat">R$14.42M</div><div class="stat-n">price + freight, deduplicated at order level</div></div>
+      </div>
+
+      <div class="grid g2 olist-body" style="margin-top:18px;flex:1">
+        <div class="card">
+          <span class="eyebrow">Business question</span>
+          <h3>Is marketplace growth coming from loyalty or continuous acquisition?</h3>
+          <ul style="margin-top:12px">
+            <li>Revenue and order volume trend upward, but only about <b>3.1%</b> of unique customers return for another order.</li>
+            <li>That changes the decision: the problem is not simply “how do we grow sales?” but “how do we create more value from customers we already acquired?”</li>
+            <li>Customer-level repeat behavior became the anchor metric for the Tableau story.</li>
+          </ul>
+        </div>
+        <div class="card good">
+          <span class="eyebrow">What the dashboard enables</span>
+          <h3>Move from headline KPI to investigation</h3>
+          <ul style="margin-top:12px">
+            <li>Compare repeat behavior across product categories.</li>
+            <li>Explore monthly patterns with category filters.</li>
+            <li>Test whether delivery performance is a plausible retention lever.</li>
+            <li>Use Tableau actions and parameters to let a stakeholder ask the next question without rebuilding the dashboard.</li>
+          </ul>
+          <div class="callout" style="background:#fff;border-color:#c7ecdd"><b>Core decision:</b> prioritize retention analysis before treating overall revenue growth as proof of customer loyalty.</div>
+        </div>
+      </div>`
+  },
+
+  {
+    id:"olist-technical", title:"Olist Technical & Recommendations",
+    html:`
+      <div class="project-badge portfolio">Portfolio Project · Tableau Technical Evidence</div>
+      <h2>Data modeling was part of the analysis—not just setup.</h2>
+      <div class="grid g2" style="margin-top:20px;flex:1">
+        <div class="card">
+          <span class="eyebrow">Data preparation & modeling</span>
+          <h3>Why I used Relationships instead of a physical join</h3>
+          <ul style="margin-top:12px">
+            <li><b>750</b> orders had no payment row; preserving them avoided unnecessary row loss.</li>
+            <li><b>2,936</b> orders used more than one payment method, so joining payment rows directly could multiply order-level measures.</li>
+            <li>I used Tableau Relationships and an order-level LOD calculation to deduplicate price + freight before aggregating revenue.</li>
+            <li><b>218</b> orders had seller IDs not found in the seller table; those records were kept visible for investigation rather than silently dropped.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="eyebrow">Advanced Tableau</span>
+          <h3>Calculated fields, LOD, parameters & actions</h3>
+          <ul style="margin-top:12px">
+            <li><b>Order Revenue (dedup)</b> — fixed at Order ID level.</li>
+            <li><b>Repeat Customer Flag</b> — customer-level COUNTD of orders.</li>
+            <li>Delivery time, delay, and late-order fields for retention diagnostics.</li>
+            <li><b>Top N parameter + filter action</b> so category exploration updates downstream views without rebuilding worksheets.</li>
+          </ul>
+          <div class="callout"><b>Recruiter takeaway:</b> this is not only a charting exercise. It shows relational modeling, measure-level data quality protection, interactive BI, and business storytelling in one case.</div>
+        </div>
+
+        <div class="card tint" style="grid-column:1/-1">
+          <span class="eyebrow">Decision-oriented recommendations</span>
+          <div class="grid g3" style="margin-top:10px">
+            <div>
+              <h3>01 · Retention</h3>
+              <p class="stat-n">Focus on repeat-purchase opportunities rather than interpreting overall revenue growth as evidence of loyalty.</p>
+            </div>
+            <div>
+              <h3>02 · Category</h3>
+              <p class="stat-n">Use category-level repeat behavior to identify where cross-sell or post-purchase campaigns are most promising.</p>
+            </div>
+            <div>
+              <h3>03 · Delivery</h3>
+              <p class="stat-n">Treat delivery reliability as a supporting diagnostic, not automatically the primary retention lever.</p>
+            </div>
           </div>
         </div>
       </div>`
@@ -673,17 +1298,26 @@ const slides = [
     id:"contact", foot:false, cls:"cover", title:"Contact",
     html:`
       <div class="kicker">Next conversation</div>
-      <h1 style="font-size:clamp(40px,4vw,50px);max-width:760px">Let's turn data into decisions.</h1>
+      <h1 style="font-size:46px;max-width:760px">Let's turn data into decisions.</h1>
       <div class="rule"></div>
       <p class="sub" style="font-size:18px;max-width:62ch">
         I am looking for opportunities where analytical thinking, reporting, data quality, and business context can create measurable value.
       </p>
-      <div class="chips" style="margin-top:30px">
+      <div class="chips" style="margin-top:26px">
         <div class="chip"><b>Email</b> · <a href="mailto:${ME.email}">${ME.email}</a></div>
         <div class="chip"><b>LinkedIn</b> · <a href="${ME.linkedin}" target="_blank" rel="noopener">View profile</a></div>
+        <div class="chip"><b>GitHub</b> · <a href="${ME.github}" target="_blank" rel="noopener">View profile</a></div>
       </div>
-      <div style="margin-top:34px;font-size:13px;color:var(--muted);line-height:1.55;max-width:70ch">
-        Source workbooks, SQL scripts, notebooks, and dashboards are treated as technical evidence. Future Dibimbing assignments will be added as structured case studies showing the brief, dataset, approach, validation, result, and supporting files.
+
+      <div class="explore-label">Explore the flagship project yourself</div>
+      <div class="chips" style="margin-top:9px">
+        <a class="chip go" href="https://public.tableau.com/shared/KF5Y2HRP4?:display_count=n&amp;:origin=viz_share_link" target="_blank" rel="noopener"><b>Credit Risk Dashboard</b> · Tableau Public &rarr;</a>
+        <a class="chip go" href="https://github.com/fatwaferdiansyah97-dev/lending-club-credit-risk-analysis" target="_blank" rel="noopener"><b>SQL views &amp; project code</b> · GitHub &rarr;</a>
+        <a class="chip go" href="${ME.github}" target="_blank" rel="noopener"><b>All projects</b> · GitHub profile &rarr;</a>
+      </div>
+
+      <div style="margin-top:26px;font-size:13px;color:var(--muted);line-height:1.55;max-width:70ch">
+        Source workbooks, notebooks, and SQL scripts are available as technical evidence. Future entries follow the same case-study structure: brief, dataset, approach, result, and supporting files.
       </div>`
   }
 ];
@@ -713,7 +1347,7 @@ function futureProjectToSlide(p, index){
 }
 
 const futureSlides = futureProjects.map(futureProjectToSlide);
-const deck = [...slides.slice(0,6), ...futureSlides, ...slides.slice(6)];
+const deck = [...slides.slice(0,14), ...futureSlides, ...slides.slice(14)];
 
 /* ---------- Render ---------- */
 const stage = document.getElementById("stage");
@@ -725,6 +1359,7 @@ deck.forEach((p, i) => {
   const el = document.createElement("section");
   el.className = "slide " + (p.cls || "");
   el.dataset.index = i;
+  el.dataset.slideId = p.id;
   el.setAttribute("aria-label", `${i + 1} of ${deck.length}: ${p.title || p.id}`);
   el.innerHTML = p.html + (p.foot === false ? "" :
     `<div class="foot"><span>${ME.name} · ${ME.role}</span><span>${String(i + 1).padStart(2,"0")} / ${String(deck.length).padStart(2,"0")}</span></div>`);
@@ -754,6 +1389,18 @@ document.addEventListener("keydown", e => {
 });
 
 show(0);
+
+/* ---------- Scale the 1280x720 slide to fit any window ---------- */
+function fitDeck(){
+  const vw = document.documentElement.clientWidth;
+  const vh = window.innerHeight;
+  if(vw <= 900){ document.documentElement.style.setProperty("--s", "1"); return; }
+  const s = Math.min((vw - 40) / 1280, (vh - 40) / 720, 1.45);
+  document.documentElement.style.setProperty("--s", String(Math.max(s, 0.25)));
+}
+window.addEventListener("resize", fitDeck);
+window.addEventListener("orientationchange", fitDeck);
+fitDeck();
 </script>
 </body>
 </html>
