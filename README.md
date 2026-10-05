@@ -2,18 +2,27 @@
 
 Live site: **https://fatwaferdiansyah97-dev.github.io/data-analyst-portfolio/**
 
-A single-page portfolio deck covering my data analysis case studies, built as one self-contained HTML file.
+A single-page portfolio deck (21 slides) covering my data analysis case studies, built as one self-contained HTML file. My focus is risk, compliance, and fraud analytics: finding data that departs from its own pattern and turning it into decisions that can be acted on.
 
 ## Case studies included
 
-- **Credit Risk Analysis, Lending Club** (2.26M loan records, Python, PostgreSQL, Tableau) · [repo](https://github.com/fatwaferdiansyah97-dev/lending-club-credit-risk-analysis)
+### Risk and control
+- **Procurement Risk Prioritization** (1.3M Indonesian government contracts, LPSE 2013 to 2023, Python, PostgreSQL, Power BI) · [repo](https://github.com/fatwaferdiansyah97-dev/procurement-risk-analysis-indonesia)
+  Ranked 518 public buyers by risk against their own market norm (observed vs expected), so no buyer is penalized simply for what it buys. 170 buyers stayed above norm in two separate periods.
+- **Credit Risk and Control Effectiveness, Lending Club** (2.26M loan records, Python, PostgreSQL, Tableau) · [repo](https://github.com/fatwaferdiansyah97-dev/lending-club-credit-risk-analysis)
+  Tested whether income verification actually lowered default risk, controlling for risk grade and cohort year.
+
+### Business analytics
 - **A/B Testing, Spotify Campaign** (100,000 users, hypothesis testing and power analysis) · [repo](https://github.com/fatwaferdiansyah97-dev/ab-testing-spotify-campaign)
 - **Customer Segmentation, RFM Analysis** (Power BI, DAX) · [repo](https://github.com/fatwaferdiansyah97-dev/customer-segmentation-rfm)
-- **Relational Database Design** (PostgreSQL, DDL, DML, constraints)
-- **Retail Sales Analytics** (Excel, PivotTables, duplicate transaction detection)
-- **HR Analytics** (statistical testing, and conclusions that did not survive it)
+- **Retail Sales Analytics** (Excel, PivotTables, Power Pivot, duplicate transaction detection)
 - **Olist E-Commerce** (Tableau, customer retention)
+
+### Data foundations
+- **Relational Database Design** (PostgreSQL, DDL, DML, constraints)
+- **HR Analytics** (statistical testing, and conclusions that did not survive it)
+- **Data Integration Pipeline** (CSV, REST API, and web data joined into one keyed dataset)
 
 ## Contact
 
-[Email](mailto:fatwaferdiansyah97@gmail.com) · [LinkedIn](https://www.linkedin.com/in/fatwa-ferdiansyah-9951ba278)
+[Email](mailto:fatwaferdiansyah97@gmail.com) · [LinkedIn](https://www.linkedin.com/in/fatwa-ferdiansyah-9951ba278) · [GitHub](https://github.com/fatwaferdiansyah97-dev)
