@@ -268,6 +268,19 @@ a.chip.go:hover b{color:#fff}
 .slide[data-slide-id="lc-verification"] .lc-verify > .card{min-height:0;overflow:hidden}
 .slide[data-slide-id="lc-verification"] .lc-verify li{font-size:12.3px;line-height:1.34;margin-bottom:5px}
 .slide[data-slide-id="lc-verification"] .lc-verify .eyebrow{margin-bottom:5px}
+.slide[data-slide-id="proc-method"] h2{max-width:46ch;font-size:27px}
+.slide[data-slide-id="proc-method"] .sub{font-size:15px}
+.slide[data-slide-id="proc-method"] .lc-stats .card{padding:12px 14px}
+.slide[data-slide-id="proc-method"] .lc-stats .stat.sm{font-size:25px}
+.slide[data-slide-id="proc-method"] .lc-stats .stat-n{font-size:11.6px;line-height:1.28;margin-top:7px}
+.slide[data-slide-id="proc-method"] .lc-body .card{padding:13px 15px;overflow:hidden;min-height:0}
+.slide[data-slide-id="proc-method"] .lc-body h3{font-size:15.5px}
+.slide[data-slide-id="proc-method"] .lc-body li{font-size:12.4px;line-height:1.34;margin-bottom:4px}
+.slide[data-slide-id="proc-method"] .lc-body .callout{padding:9px 11px;font-size:12px;line-height:1.34}
+.slide[data-slide-id="proc-findings"] h2{max-width:44ch;font-size:27px}
+.slide[data-slide-id="proc-findings"] .lc-verify > .card{min-height:0;overflow:hidden}
+.slide[data-slide-id="proc-findings"] .lc-verify li{font-size:12.3px;line-height:1.34;margin-bottom:5px}
+.slide[data-slide-id="proc-findings"] .lc-verify .eyebrow{margin-bottom:5px}
 
 /* ---------- A/B Testing slides fit ---------- */
 .slide[data-slide-id="ab-results"] h2{max-width:44ch;font-size:26px}
@@ -515,6 +528,32 @@ const CHARTS = {
     <text x="340" y="296" font-size="11.5" fill="#8a8985">gap shown per grade, all 7 positive</text>
     </svg>`,
 
+  procGap: `<svg viewBox="0 0 620 250" width="100%" role="img" aria-label="Priority buyers compared with other buyers">
+    <rect x="250" y="4" width="12" height="10" rx="2" fill="#eb6834"/><text x="268" y="13" font-size="11" fill="#52514e">170 priority buyers / districts</text>
+    <rect x="440" y="4" width="12" height="10" rx="2" fill="#c9d8ea"/><text x="458" y="13" font-size="11" fill="#52514e">other buyers / provinces</text>
+    <text x="240" y="43" text-anchor="end" font-size="12.5" font-weight="700" fill="#52514e">Supplier pairs priced</text>
+    <text x="240" y="59" text-anchor="end" font-size="10.5" fill="#8a8985">at 99%+ of owner's estimate</text>
+    <rect x="250" y="30" width="318.2" height="17" rx="3" fill="#eb6834"/>
+    <text x="574.2" y="43" font-size="12" font-weight="800" fill="#0b0b0b">61.2%</text>
+    <rect x="250" y="50" width="69.7" height="17" rx="3" fill="#c9d8ea"/>
+    <text x="325.7" y="63" font-size="12" font-weight="700" fill="#52514e">13.4%</text>
+    <text x="240" y="105" text-anchor="end" font-size="12.5" font-weight="700" fill="#52514e">Buyers above norm</text>
+    <text x="240" y="121" text-anchor="end" font-size="10.5" fill="#8a8985">districts vs provinces</text>
+    <rect x="250" y="92" width="192.4" height="17" rx="3" fill="#eb6834"/>
+    <text x="448.4" y="105" font-size="12" font-weight="800" fill="#0b0b0b">37% (137 of 371)</text>
+    <rect x="250" y="112" width="31.2" height="17" rx="3" fill="#c9d8ea"/>
+    <text x="287.2" y="125" font-size="12" font-weight="700" fill="#52514e">6% (2 of 34)</text>
+    <text x="240" y="167" text-anchor="end" font-size="12.5" font-weight="700" fill="#52514e">Price vs expected</text>
+    <text x="240" y="183" text-anchor="end" font-size="10.5" fill="#8a8985">after market and year</text>
+    <line x1="420" y1="150" x2="420" y2="200" stroke="#8a8985"/>
+    <rect x="420" y="154" width="105.8" height="17" rx="3" fill="#eb6834"/>
+    <text x="531.8" y="167" font-size="12" font-weight="800" fill="#0b0b0b">+5.88%</text>
+    <rect x="387.2" y="174" width="32.8" height="17" rx="3" fill="#c9d8ea"/>
+    <text x="381.2" y="187" text-anchor="end" font-size="12" font-weight="700" fill="#52514e">-1.82%</text>
+    <line x1="16" y1="214" x2="604" y2="214" stroke="#e6e5e1"/>
+    <text x="16" y="232" font-size="11" fill="#8a8985">Price was not used to build the risk score, so these gaps are an outside check, not a circular result.</text>
+    </svg>`,
+
   lcDecomp: `<svg viewBox="0 0 612 128" width="100%" role="img" aria-label="Decomposition of the crude default-rate gap">
     <text x="16" y="14" font-size="11" letter-spacing=".07em" fill="#8a8985" font-weight="800">CRUDE GAP 6.29 PERCENTAGE POINTS</text>
     <rect x="16.0" y="26" width="362.2" height="34" rx="4" fill="#c9d8ea"/>
@@ -726,7 +765,7 @@ const slides = [
           <div style="margin-top:10px">
             <span class="tag b">Python</span><span class="tag b">pandas</span><span class="tag b">SciPy</span><span class="tag b">matplotlib</span>
           </div>
-          <div class="callout"><b>Evidence:</b> confidence intervals · ANOVA · &chi;&sup2; · Bonferroni correction · stratified odds ratios.</div>
+          <div class="callout"><b>Evidence:</b> confidence intervals · ANOVA · &chi;&sup2; · Bonferroni correction · stratified odds ratios · O/E standardization.</div>
         </div>
 
         <div class="card">
@@ -946,6 +985,87 @@ const slides = [
             </table>
           </div>
           <div class="callout"><b>Technical evidence:</b> the original assignment required PostgreSQL and DBeaver, covering DDL, relationships, DML, constraints, and ALTER TABLE.</div>
+        </div>
+      </div>`
+  },
+
+  {
+    id:"proc-method", title:"Procurement Risk Case Study",
+    html:`
+      <div class="project-badge portfolio">Final Project · Procurement Risk Prioritization</div>
+      <h2>Raw risk scores punish buyers for what they buy. I compared each buyer only against its own market.</h2>
+      <p class="sub">1.3 million Indonesian government contracts from LPSE, 2013 to 2023. The question: which public buyers score higher than they should, once the type of spending and the year are taken into account?</p>
+      <div class="evidence-links"><a href="https://github.com/fatwaferdiansyah97-dev/procurement-risk-analysis-indonesia" target="_blank" rel="noopener">Notebook, reduction script and README on GitHub</a></div>
+
+      <div class="grid g4 lc-stats" style="margin-top:18px;flex:none">
+        <div class="card"><div class="stat-l">Raw file</div><div class="stat sm">10.79 GB</div><div class="stat-n">187 columns, 5,453,095 rows</div></div>
+        <div class="card"><div class="stat-l">Clean contracts</div><div class="stat sm">1,301,381</div><div class="stat-n">after 67,521 duplicate rows removed</div></div>
+        <div class="card"><div class="stat-l">Comparable</div><div class="stat sm">957,460</div><div class="stat-n">with a valid market group</div></div>
+        <div class="card"><div class="stat-l">Buyers assessed</div><div class="stat sm">518</div><div class="stat-n">in both periods</div></div>
+      </div>
+
+      <div class="grid g2 lc-body" style="margin-top:16px;flex:1;min-height:0">
+        <div class="card good">
+          <span class="eyebrow">Data issues fixed before scoring</span>
+          <h3>Five problems found during exploration</h3>
+          <ul style="margin-top:11px">
+            <li>The bidder-count column held <b>registrants</b>, not bids (median 21). Single-bid share was rebuilt from actual bid rows: 39%, not 0.36%.</li>
+            <li>The official single-bid indicator used the same column, so it was replaced.</li>
+            <li>Direct awards fell from 57% to 0.3% in 2019: a recording change, so the analysis was split into two periods.</li>
+            <li>Product codes lost leading zeros; fixing them moved <b>123,403</b> codes to the right market.</li>
+            <li>7,691 contracts with implausible price ratios were <b>flagged, not deleted</b>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="eyebrow">Method</span>
+          <h3>Indirect standardization (Observed / Expected)</h3>
+          <ul style="margin-top:11px">
+            <li>Risk score: three equal-weight signals (single bid, short advertising, unusual decision period).</li>
+            <li>Contracts split into cells of year &times; market division.</li>
+            <li>Each buyer's expected score uses <b>other buyers'</b> average in the same cells, so no buyer judges itself.</li>
+            <li>O/E above 1 means riskier than its market norm; 95% CIs clustered by tender.</li>
+          </ul>
+          <div class="callout"><b>Why it matters:</b> a district that mostly builds roads always looks riskier than a ministry buying consultancy. O/E removes that before ranking.</div>
+        </div>
+      </div>`
+  },
+
+  {
+    id:"proc-findings", title:"Procurement Risk Findings",
+    html:`
+      <div class="project-badge portfolio">Final Project · Procurement Risk Findings</div>
+      <h2>170 of 518 buyers stayed above their market norm in two separate periods.</h2>
+      <p class="sub">The two periods use completely different contracts. Swapping the comparison cells still gives 162 to 173 buyers, and adding month to the cells keeps the O/E correlation at 0.987.</p>
+
+      <div class="grid g25 lc-verify" style="margin-top:16px;flex:1;min-height:0">
+        <div class="card">
+          <span class="eyebrow">Priority buyers versus the rest</span>
+          <div style="margin-top:8px">${CHARTS.procGap}</div>
+          <div class="grid g3" style="margin-top:12px;gap:10px">
+            <div class="card tint" style="padding:10px 12px"><div class="stat-l">Year-end pressure</div><div class="stat sm" style="font-size:22px">33.8 &rarr; 53.2</div><div class="stat-n">avg risk, January to October</div></div>
+            <div class="card tint" style="padding:10px 12px"><div class="stat-l">Seasonal peak</div><div class="stat sm" style="font-size:22px">11 of 11</div><div class="stat-n">years peak in Oct or Nov</div></div>
+            <div class="card tint" style="padding:10px 12px"><div class="stat-l">Robustness</div><div class="stat sm" style="font-size:22px">162 to 173</div><div class="stat-n">buyers under other comparison cells</div></div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;min-height:0">
+          <div class="card" style="padding:14px 16px">
+            <span class="eyebrow">Recommended actions</span>
+            <ul style="margin-top:8px">
+              <li>Examine the 170 buyers first, starting with districts and construction (risk 56.0 vs 38.5 nationally).</li>
+              <li>Review owner's-estimate files for the 561 supplier pairs priced at 99%+ of estimate.</li>
+              <li>Prioritise 28 buyers that worsened (O/E 0.82 to 1.17).</li>
+              <li>Add oversight to tenders announced September to November: risk peaks there in 11 of 11 years.</li>
+            </ul>
+          </div>
+          <div class="card tint" style="padding:14px 16px;margin-top:auto">
+            <span class="eyebrow" style="color:#1c5cab">What this is not</span>
+            <ul style="margin-top:8px">
+              <li>A list of wrongdoing. It is an order of examination, <b>not an audit result</b>.</li>
+              <li>A measure of state loss. The price gap is relative to market norms.</li>
+              <li>O/E measures deviation from the norm, not from the truth: if a whole market behaves badly, no one stands out.</li>
+            </ul>
+          </div>
         </div>
       </div>`
   },
